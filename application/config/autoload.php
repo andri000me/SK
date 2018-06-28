@@ -12,4 +12,4 @@ $autoload['config'] = array();
 
 $autoload['language'] = array();
 
-$autoload['model'] = array('M_Login','M_User');
+$autoload['model'] = array('M_Login','M_User','M_SK');

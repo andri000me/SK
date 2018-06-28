@@ -62,7 +62,7 @@
 <li>
     <a href=""><i class="fa fa-file-text"></i> <span class="nav-label">Master Data</span> <span class="fa arrow"></span></a>
     <ul class="nav nav-second-level collapse">
-        <li><a href="<?php echo base_url('') ?>">Data SK Pengajuan</a></li>
+        <li><a href="<?php echo base_url('index.php/opd/dashboard/data_pengajuan') ?>">Data SK Pengajuan</a></li>
     </ul>
     <ul class="nav nav-second-level collapse">
         <li><a href="<?php echo base_url('') ?>">Data SK Diterima</a></li>
