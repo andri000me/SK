@@ -65,38 +65,31 @@
         <li><a href="<?php echo base_url('index.php/opd/dashboard/data_pengajuan') ?>">Data SK Pengajuan</a></li>
     </ul>
     <ul class="nav nav-second-level collapse">
-        <li><a href="<?php echo base_url('') ?>">Data SK Diterima</a></li>
+        <li><a href="<?php echo base_url('index.php/opd/dashboard/data_pengajuan_diterima') ?>">Data SK Diterima</a></li>
     </ul>
     <ul class="nav nav-second-level collapse">
         <li><a href="<?php echo base_url('') ?>">Data SK Ditolak</a></li>
     </ul>
-   
-  
-
-
-        </li>
+</li>
 <?php }elseif ($level['level']==3) {?>
 <li>
 <a href="<?php echo base_url('') ?>"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span></a>
 </li>
 <li>
-    <a href=""><i class="fa fa-file-text"></i> <span class="nav-label">Data Pegawai</span> <span class="fa arrow"></span></a>
+    <a href=""><i class="fa fa-file-text"></i> <span class="nav-label">Mater Data</span> <span class="fa arrow"></span></a>
     <ul class="nav nav-second-level collapse">
-        <li><a href="<?php echo base_url('') ?>">Data Pegawai</a></li>
+        <li><a href="<?php echo base_url('index.php/birohukum/dashboard/data_pengajuan_sk') ?>">Data Pengajuan</a></li>
     </ul>
     <ul class="nav nav-second-level collapse">
-        <li><a href="<?php echo base_url('') ?>">Data Pegawai Lanjutan</a></li>
+        <li><a href="<?php echo base_url('index.php/birohukum/dashboard/data_pengajuan_diterima') ?>">Data SK Diterima</a></li>
     </ul>
     <ul class="nav nav-second-level collapse">
-        <li><a href="<?php echo base_url('') ?>">Pegawai Non-Aktif</a></li>
+        <li><a href="<?php echo base_url('index.php/birohukum/dashboard/data_pengajuan_ditolak') ?>">Data SK Ditolak</a></li>
     </ul>
+
+    
 </li>
-<li>
-    <a href=""><i class="fa fa-flask"></i> <span class="nav-label">Master Data</span> <span class="fa arrow"></span></a>
-    <ul class="nav nav-second-level collapse">
-        <li><a href="<?php echo base_url('') ?>">Data Operasional</a></li>
-    </ul>
-</li>
+
 
 <?php } ?>
 

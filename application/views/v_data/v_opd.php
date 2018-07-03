@@ -32,6 +32,7 @@
                                 <th>No</th>
                                 <th>Nama OPD</th>
                                 <th>Username</th>
+                                <th>Level</th>
                                 <th>Password</th>
                                 <th>Aksi</th>                                
                             </tr>
@@ -45,6 +46,14 @@
                                 <td><?php echo $no; ?></td>
                                 <td><?php echo $key['sk_nama_user']; ?></td>
                                 <td><?php echo $key['username']; ?></td>
+                                <td><?php if ($key['level']==1) {?>
+                                        <?php echo"SUPERADMIN" ?>
+                                <?php }elseif ($key['level']==2) {?>
+                                        <?php echo"OPD" ?>
+                                <?php }else{?>
+                                        <?php echo"ADMIN" ?>
+                                <?php } ?>
+                                </td>
                                 <td><?php echo $key['password']; ?></td>
                             
                                 
@@ -87,11 +96,25 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group col-md-12">
-                                                                <label class="col-md-6">password</label>
+                                                                <label class="col-md-6">Level</label>
                                                                 <div class="input-group date col-sm-12">
-                                                                    <span class="input-group-addon"><i class="fa fa-info"></i></span><input type="password" name="3" required="required" class="form-control" value="">
+                                                                    <span class="input-group-addon"><i class="fa fa-info"></i></span>
+                                                                    <select name="level" class="form-control">
+                                                                        <option>====== Pilih Level ======</option>
+                                                                        <option value="1">SUPERADMIN</option>
+                                                                        <option value="3">ADMIN</option>
+                                                                        <option value="2">OPD</option>
+                                                                       
+                                                                    </select>
                                                                 </div>
                                                             </div>
+                                                            <div class="form-group col-md-12">
+                                                                <label class="col-md-6">password</label>
+                                                                <div class="input-group date col-sm-12">
+                                                                    <span class="input-group-addon"><i class="fa fa-info"></i></span><input type="password" name="3"  class="form-control" value="">
+                                                                </div>
+                                                            </div>
+
                                                             
 
                                                         </div>                                                  

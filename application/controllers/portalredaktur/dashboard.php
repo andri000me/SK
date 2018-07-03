@@ -83,6 +83,7 @@ class Dashboard extends CI_Controller {
 			'sk_nama_user' 		=> $this->input->post('1'),
 			'username'			=> $this->input->post('2'),
 			'password'			=> $pwd,
+			'level'				=> $this->input->post('level'),
 		);
 		$res =	$this->M_User->update_data_opd($data);
 		if($res >= 1)

@@ -25,6 +25,21 @@ class Dashboard extends CI_Controller {
 
 		$this->load->view('Tempelate/template',$data);
 	}
+	public function histori($id)
+	{
+		$data['username']=$this->session->userdata('username');
+		$data1=$data['username'];
+		$data = array(
+			'cop' 			=> 'Sistem Informasi Pengajuan SK',
+			'breadcrumb' 	=> 'Biro Hukum Provinsi NTB',
+			'active'		=> 'Data Pengajuan',
+			'konten'		=> 'v_data/v_history',
+			'temp'			=> $this->M_SK->get_histori($id),
+			'level'	        => $this->M_Login->cek_level($data1),
+		);
+
+		$this->load->view('Tempelate/template',$data);
+	}
 	public function form_pengajuan_sk()
 	{
 		$data['username']=$this->session->userdata('username');
@@ -48,7 +63,7 @@ class Dashboard extends CI_Controller {
         $data['username']=$this->session->userdata('username');
 		$data1=$data['username'];      
 		$date1=$time=date_default_timezone_set("Asia/Jakarta");
-		$time=date("Y-m-d h:i:s", $date1);
+		$time=date("Y-m-d h:i:s");
 
 		$data = array(
 			'sk_judul' 			=> $this->input->post('sk_judul'),
@@ -57,12 +72,25 @@ class Dashboard extends CI_Controller {
 			'sk_file_pendukung'	=> $this->upload_sk($a),
 			'sk_file_pendukung_2'=> $this->upload_sk($b),
 			'sk_file_pendukung_3'=> $this->upload_sk($c),
+			'sk_proses_status'	=>	"T",
 		);
 		$res =	$this->M_SK->insert($data);
 		if($res >= 1)
 		{
+			$query=$this->M_SK->get_id();;
+			$hasil=$query->row();
+			$id=$hasil->sk_id_syarat;
+			$time=$hasil->sk_tgl_pengajuan;
+			$status=$hasil->sk_proses_status;
+			$data1 = array(
+			'sk_id_syarat' 		=> $id,
+			'sk_tgl_proses'		=> $time,
+			'catatan'			=> null,
+			'sk_final'			=> null,
+			'sk_status'			=> $status,
+		);
+			$this->M_SK->insert_history($data1);
 			$this->session->set_flashdata('message', '<div class="alert alert-success" id="message" role="alert">Data Berhasil di Simpan</div>');
-
 			redirect ("index.php/opd/dashboard/data_pengajuan");
 		}else{
 			$this->session->set_flashdata('message', '<div class="alert alert-warning" id="message" role="alert">Data Tidak Berhasil di Simpan</div>');
@@ -74,7 +102,7 @@ class Dashboard extends CI_Controller {
     	$data['username']=$this->session->userdata('username');
 		$data1=$data['username']; 
         $nama_asli                  = $_FILES[$param]['name'];
-        $nama_alias					= $data.'_'.$nama_asli;
+     
         $config=array(
  
             'upload_path'   => './file/pengajuan/',
@@ -107,6 +135,22 @@ class Dashboard extends CI_Controller {
 			'konten'		=> 'v_opd/v_data_pengajuan',
 			'no'			=> 0,
 			'temp'			=> $this->M_SK->get_data_sk($data1),
+			'level'	        => $this->M_Login->cek_level($data1),
+		);
+
+		$this->load->view('Tempelate/template',$data);
+    }
+    public function data_pengajuan_diterima()
+    {
+    	$data['username']=$this->session->userdata('username');
+		$data1=$data['username'];
+		$data = array(
+			'cop' 			=> 'Sistem Informasi Pengajuan SK',
+			'breadcrumb' 	=> 'Biro Hukum Provinsi NTB',
+			'active'		=> 'Data Pengajuan Diterima',
+			'konten'		=> 'v_opd/v_data_terima',
+			'no'			=> 0,
+			'temp'			=> $this->M_SK->get_terima(),
 			'level'	        => $this->M_Login->cek_level($data1),
 		);
 

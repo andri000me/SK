@@ -43,14 +43,11 @@ class Portalredaktuladmin extends CI_Controller {
 				
 			}elseif ($this->session->userdata('level')=='3') {
 				$this->session->set_userdata('user3','TRUE');
-				redirect('index.php/Admin/Operasional/dashbord');
-			}elseif ($this->session->userdata('level')=='4') {
-				$this->session->set_userdata('user4','TRUE');
-				redirect('index.php/Admin/Operasional2/dashbord');
+				redirect('index.php/birohukum/dashboard');
 			}
 		}else{
 			$data['pesan']='TRUE';
-			$this->load->view('Template/login',$data);
+			$this->load->view('index.php/Tempelate/login',$data);
 		}
 	}
 	
