@@ -25,6 +25,14 @@ class Dashboard extends CI_Controller {
 
 		$this->load->view('Tempelate/template',$data);
 	}
+	public function download_track($id)
+	{
+		$data = array(
+			'no'			=>0,
+			'cetak'			=> $this->M_SK->get_track($id),
+		);
+		$this->load->view('v_data/rekap',$data);
+	}
 	public function index()
 	{
 		$data['username']=$this->session->userdata('username');
@@ -33,10 +41,10 @@ class Dashboard extends CI_Controller {
 			'cop' 			=> 'Sistem Informasi Pengajuan SK',
 			'breadcrumb' 	=> 'Biro Hukum Provinsi NTB',
 			'active'		=> 'Dashbord',
-			'konten'		=> 'v_opd/dashboard',
+			'konten'		=> 'v_biro/dashboard',
 			'level'	        => $this->M_Login->cek_level($data1),
 		);
-
+		$data['status']=json_encode($this->M_SK->get_status());
 		$this->load->view('Tempelate/template',$data);
 	}
 	public function data_pengajuan_sk()
@@ -55,6 +63,7 @@ class Dashboard extends CI_Controller {
 
 		$this->load->view('Tempelate/template',$data);
 	}
+	
 	public function data_pengajuan_diterima()
 	{
 		$data['username']=$this->session->userdata('username');

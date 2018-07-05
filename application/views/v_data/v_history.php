@@ -51,7 +51,7 @@
                                 <div class="vertical-timeline-content">
                                     <h2><?php echo $key['judul']; ?></h2>
                                     <p><font color="red"><?php echo $key['catatan']; ?></font></p>
-                                    <?php if ($key['status']=='P'AND $key['file']!=NULL ) { ?>
+                                    <?php if ($key['file']!=NULL ) { ?>
                                         <a href=<?php echo '"'.base_url('file/final/'.$key['file']).'"';?> target="_blank" class="btn btn-sm btn-success"> Download document </a>
                                     <?php } ?>
                                     <span class="vertical-date">
@@ -61,7 +61,7 @@
                                         <?php }elseif ($key['status']=='P') {?>
                                         <h4><b>PROSES</b></h4>
                                         <?php }elseif($key['status']=='Y'){ ?>
-                                        <h4><b>DI TERIMA</b></h4>
+                                        <h4><b>SELESAI</b></h4>
                                         <?php }else{ ?>
                                         <h4><b>DI TOLAK</b></h4>
                                         <?php } ?>

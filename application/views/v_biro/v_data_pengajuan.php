@@ -39,6 +39,7 @@
                 <th>File 2</th>
                 <th>File 3</th>
                 <th>Status</th>
+                <th>Track Record</th>
                 <th>Aksi</th>
                 
 
@@ -71,7 +72,9 @@
                     
                     
                   </td>
-                 
+                 <td colspan="" rowspan="" headers="">
+                   <center><a href=<?php echo '"'.base_url('index.php/birohukum/dashboard/histori/'.$key['sk_id_syarat']).'"';?> type="button" class="btn btn-success btn-md"><i class="glyphicon glyphicon-record" ></i></a></center>
+                 </td>
                   <td colspan="" rowspan="" headers=""><center><a href="" data-toggle="modal" data-target="#<?php echo $key['sk_id_syarat']?>" type="button" class="btn btn-white btn-md"><i class="glyphicon glyphicon-pencil" ></i>&nbspEdit</a>
                  
                   </center>
@@ -132,9 +135,9 @@
                                       <label class="col-md-6">Status</label>
                                       <div class="input-group date col-sm-12">
                                         <span class="input-group-addon"><i class="fa fa-chevron-up"></i></span>
-                                        <select name="status" class="form-control">
-                                          <option value="T">Pengajuan</option>
-                                          <<option value="P">Proses</option>
+                                        <select name="status" class="form-control" required="">
+                                           <option value="">====== Pilih Status Proses ======</option>
+                                          <option value="P">Proses</option>
                                           <option  value="Y">Terima</option>
                                           <option  value="N">Tolak</option>
                                         </select>

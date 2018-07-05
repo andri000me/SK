@@ -176,7 +176,7 @@
 
                               <div class="ibox-content">
 
-                                <form method="post" action="<?php echo base_url('')?>index.php/opd/dashboard/update_sk" enctype="multipart/form-data">
+                                <form method="post" action="<?php echo base_url('')?>index.php/opd/dashboard/revisi" enctype="multipart/form-data">
                                   <div class="body">
 
 
@@ -193,28 +193,22 @@
                                       <div class="input-group date col-sm-12">
                                         <span class="input-group-addon"><i class="fa fa-info"></i></span><input type="text" required="required" disabled="disabled" name="" value="<?php echo $key['sk_nama_opd'] ?>" class="form-control">
                                       </div>
-                                    </div>  
-                                    <div class="form-group col-md-12">
-                                      <label class="col-md-6">file pendukung 1</label>
-                                      <div class="input-group date col-sm-12">
-                                        <span class="input-group-addon"><i class="fa fa-upload"></i></span><input type="file"   name="file1" value="<?php echo $key['sk_nama_opd'] ?>" class="form-control">
-                                      </div>
-                                       <span class="help-block m-b-none"><font color="blue"><?php echo $key['sk_file_pendukung'] ?></font></span>
                                     </div> 
                                     <div class="form-group col-md-12">
-                                      <label class="col-md-6">file pendukung 2</label>
+                                      <label class="col-md-6">Catatan</label>
                                       <div class="input-group date col-sm-12">
-                                        <span class="input-group-addon"><i class="fa fa-upload"></i></span><input type="file"   name="file2" value="<?php echo $key['sk_nama_opd'] ?>" class="form-control">
+                                        <span class="input-group-addon"><i class="fa fa-info"></i></span>
+                                        <textarea rows="4" cols="55" name="catatan">
+                                          
+                                        </textarea>
                                       </div>
-                                       <span class="help-block m-b-none"><font color="blue"><?php echo $key['sk_file_pendukung_2'] ?></font></span>
                                     </div> 
                                     <div class="form-group col-md-12">
-                                      <label class="col-md-6">file pendukung 3</label>
+                                      <label class="col-md-6">file Revisi</label>
                                       <div class="input-group date col-sm-12">
-                                        <span class="input-group-addon"><i class="fa fa-upload"></i></span><input type="file"   name="file3" value="<?php echo $key['sk_nama_opd'] ?>" class="form-control">
+                                        <span class="input-group-addon"><i class="fa fa-upload"></i></span><input type="file"   name="file1" value="" class="form-control">
                                       </div>
-                                       <span class="help-block m-b-none"><font color="blue"><?php echo $key['sk_file_pendukung_3'] ?></font></span>
-                                    </div>                                                 
+                                    </div>                                                  
                                   </div>    
 
                                 </div>

@@ -39,10 +39,31 @@ class M_SK extends CI_Model {
 			
 		}
 	}
+	public function get_laporanopd($data)
+	{
+		$query = $this->db->query("SELECT tb_sk_syarat.*, tb_sk_user.sk_nama_user, tb_sk_user.username FROM tb_sk_syarat JOIN tb_sk_user on tb_sk_syarat.sk_nama_opd=tb_sk_user.username WHERE tb_sk_syarat.sk_nama_opd='$data' ORDER BY tb_sk_syarat.sk_id_syarat ASC ");
+		return $query;
+	}
+	public function get_all()
+	{
+		$get = $this->db->query('SELECT * FROM tb_sk_syarat GROUP BY sk_nama_opd');
+		return $get->result_array();
+	}
+	public function get_opd()
+	{
+		$query=$this->db->query("SELECT * FROM tb_sk_user WHERE level=2");
+
+		return $query->result_array();
+	}
 	public function get_data_terima()
 	{
 		return $this->db->query("SELECT * FROM tb_sk_syarat WHERE sk_proses_status='Y' ORDER BY sk_id_syarat DESC")->result_array();
 		
+	}
+	public function get_status()
+	{
+		$query = $this->db->query("select sk_proses_status AS status, count(sk_proses_status) as jumlah from tb_sk_syarat GROUP BY sk_proses_status"); 
+		return $query->result_array();
 	}
 	public function get_terima()
 	{
@@ -56,6 +77,12 @@ class M_SK extends CI_Model {
 		 FROM tb_sk_syarat JOIN tb_briohukum ON tb_sk_syarat.sk_id_syarat=tb_briohukum.sk_id_syarat WHERE tb_sk_syarat.sk_proses_status='N' GROUP BY tb_briohukum.sk_id_syarat DESC ")->result_array();
 		
 	}
+	
+	public function get_rekap($id)
+	{
+		$query=$this->db->query("SELECT tb_briohukum.*, tb_sk_syarat.* FROM tb_sk_syarat JOIN tb_briohukum ON tb_sk_syarat.sk_id_syarat=tb_briohukum.sk_id_syarat WHERE tb_sk_syarat.sk_id_syarat='$id' ORDER BY tb_briohukum.sk_id_syarat DESC");
+		return $query;
+	}
 	public function get_histori($id)
 	{
 		return $this->db->query("SELECT tb_sk_syarat.sk_judul AS judul, tb_sk_syarat.sk_nama_opd AS opd, tb_briohukum.sk_tgl_proses AS tgl, tb_briohukum.catatan AS catatan, tb_briohukum.sk_final AS file, tb_briohukum.sk_status AS status FROM tb_briohukum  JOIN tb_sk_syarat ON tb_briohukum.sk_id_syarat=tb_sk_syarat.sk_id_syarat  WHERE tb_sk_syarat.sk_id_syarat='$id' ORDER BY tb_briohukum.sk_id_biro_hukum DESC")->result_array();
@@ -65,7 +92,11 @@ class M_SK extends CI_Model {
         $this->db->where('sk_id_syarat',$id);
         return $this->db->delete('tb_sk_syarat');
     }
-
+    public function hapus_dataa($id)
+    {
+        $this->db->where('sk_id_syarat',$id);
+        return $this->db->delete('tb_briohukum');
+    }
     public function link_file($id){
  
         $this->db->where('sk_id_syarat',$id);
@@ -77,6 +108,20 @@ class M_SK extends CI_Model {
             return null;
     }
 
+    public function link_filee($id){
+ 
+        $this->db->where('sk_id_syarat',$id);
+        $getData = $this->db->get('tb_briohukum');
+ 
+        if($getData->num_rows() > 0)
+            return $getData;
+        else
+            return null;
+    }
+    public function get_track($id)
+    {
+    	return $this->db->query("SELECT tb_sk_syarat.*, tb_briohukum.* FROM tb_briohukum  JOIN tb_sk_syarat ON tb_briohukum.sk_id_syarat=tb_sk_syarat.sk_id_syarat  WHERE tb_sk_syarat.sk_id_syarat='$id' ORDER BY tb_briohukum.sk_id_biro_hukum ASC");
+    }
     public function data_sebelumnya ($id=FALSE)
 	{
 		if($id==FALSE){
@@ -92,6 +137,12 @@ class M_SK extends CI_Model {
 	{
 		$this->db->where('sk_id_syarat',$data['sk_id_syarat']);
 		return $this->db->update('tb_sk_syarat',$data);
+	}
+
+	public function update_status($data)
+	{
+		$this->db->where('sk_id_biro_hukum',$data['sk_id_biro_hukum']);
+		return $this->db->update('tb_briohukum',$data);
 	}
 }
 

@@ -124,6 +124,33 @@ class Dashboard extends CI_Controller {
             return $nm_file;
         }
     }
+    public function upload($param)
+    {	
+    	$data['username']=$this->session->userdata('username');
+		$data1=$data['username']; 
+        $nama_asli                  = $_FILES[$param]['name'];
+     
+        $config=array(
+ 
+            'upload_path'   => './file/final/',
+            'allowed_types' => '*',
+            'max_size'      =>  90000,
+        );
+ 		$this->upload->initialize($config);
+        $this->load->library('upload', $config);
+         if ( ! $this->upload->do_upload($param))
+        {
+            $error =  $this->upload->display_errors();
+            echo $error;
+        }
+        else
+        {
+            $data = array('upload_data' => $this->upload->data());
+            $datafoto=$this->upload->data();
+            $nm_file = $datafoto['file_name'];
+            return $nm_file;
+        }
+    }
     public function data_pengajuan()
     {
     	$data['username']=$this->session->userdata('username');
@@ -139,6 +166,32 @@ class Dashboard extends CI_Controller {
 		);
 
 		$this->load->view('Tempelate/template',$data);
+    }
+    public function revisi()
+    {
+    	$a='file1'; 
+        $data['username']=$this->session->userdata('username');
+		$data1=$data['username'];      
+		$date1=$time=date_default_timezone_set("Asia/Jakarta");
+		$time=date("Y-m-d h:i:s");
+
+		$data = array(
+			'sk_id_syarat'		=> $this->input->post('id_sk'),
+			'sk_tgl_proses'		=> $time,
+			'sk_final'			=> $this->upload($a),
+			'catatan'			=> $this->input->post('catatan'),
+			'sk_status'			=> 'P',
+		);
+		$res =	$this->M_SK->insert_history($data);
+		if($res >= 1)
+		{
+			$this->session->set_flashdata('message', '<div class="alert alert-success" id="message" role="alert">Data Berhasil di Simpan</div>');
+
+			redirect ("index.php/opd/dashboard/data_pengajuan");
+		}else{
+			$this->session->set_flashdata('message', '<div class="alert alert-warning" id="message" role="alert">Data Tidak Berhasil di Simpan</div>');
+			redirect ("index.php/opd/dashboard/data_pengajuan");		
+		}	
     }
     public function data_pengajuan_diterima()
     {
@@ -156,11 +209,29 @@ class Dashboard extends CI_Controller {
 
 		$this->load->view('Tempelate/template',$data);
     }
+    public function data_pengajuan_ditolak()
+    {
+    	$data['username']=$this->session->userdata('username');
+		$data1=$data['username'];
+		$data = array(
+			'cop' 			=> 'Sistem Informasi Pengajuan SK',
+			'breadcrumb' 	=> 'Biro Hukum Provinsi NTB',
+			'active'		=> 'Data Pengajuan Diterima',
+			'konten'		=> 'v_opd/v_data_tolak',
+			'no'			=> 0,
+			'temp'			=> $this->M_SK->get_tolak(),
+			'level'	        => $this->M_Login->cek_level($data1),
+		);
+
+		$this->load->view('Tempelate/template',$data);
+    }
     public function delete_sk($id)
     {	
     	$pro=7;
     	$this->del_file($id,$pro);
+    	$this->del_filee($id,$pro);
         $this->M_SK->hapus_data($id);
+        $this->M_SK->hapus_dataa($id);
         $this->session->set_flashdata('message', '<div class="alert alert-success" id="message" role="alert">Data Berhasil di Dihapus</div>');
         redirect ("index.php/opd/dashboard/data_pengajuan");	
     }
@@ -209,6 +280,18 @@ class Dashboard extends CI_Controller {
 				unlink($path_file3.$file_photo3);
 			}
 			
+		}
+	}
+	public function del_filee($id,$pro)
+	{
+		$cek=$pro;
+		$files = $this->M_SK->link_filee($id);
+		if ($files->num_rows() > 0)
+		{
+			$row = $files->row();
+			$file_photo = $row->sk_final;
+			$path_file = './file/final/';
+			unlink($path_file.$file_photo);		
 		}
 	}
 	public function update_sk()
