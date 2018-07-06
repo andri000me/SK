@@ -97,6 +97,19 @@
                </div>
                
            </div>
+           <div class="col-lg-12">
+                    <div class="jumbotron">
+                        <h1>Syarat & Ketentuan</h1>
+                        <p>1. Pengajuan SK Melalui Situs <a href=https://si-psk.ntbprov.go.id" >SI-PSK</a>.
+                        <br>2. SK yang sudah di ajukan akan di proses oleh Biro Hukum.
+                        <br>3. Proses pengajuan dapat dilihat dalam Sistem <a href=https://si-psk.ntbprov.go.id" >SI-PSK</a>.
+                        <br>4. SK yang sudah selesai dapat di <b>UNDUH</b> pada Sistem <a href=https://si-psk.ntbprov.go.id" >SI-PSK</a>.
+                        </p>
+
+                        <p><a role="button" class="btn btn-success btn-lg">Daftar Pengajuan SK</a>
+                        </p>
+                    </div>
+                </div>
        </div>
    </div>
 
