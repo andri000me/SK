@@ -47,7 +47,7 @@ class Portalredaktuladmin extends CI_Controller {
 			}
 		}else{
 			$data['pesan']='TRUE';
-			$this->load->view('index.php/Tempelate/login',$data);
+		    redirect('portalredaktuladmin');
 		}
 	}
 	

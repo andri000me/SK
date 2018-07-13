@@ -2,7 +2,7 @@
     <div class="col-lg-12">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h5>Form Operasional Karyawan <small>PT.Cakra Samawa Sakti</small></h5>
+                <h5>Form Pengajuan SK <small>Biro Hukum Prov NTB</small></h5>
                 <div class="ibox-tools">
                     <a class="collapse-link">
                         <i class="fa fa-chevron-up"></i>

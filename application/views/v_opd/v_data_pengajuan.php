@@ -54,9 +54,21 @@
                   <td colspan="" rowspan="" headers=""><?php echo $key['sk_nama_opd'] ?></td>
                   <td colspan="" rowspan="" headers=""><?php echo $key['sk_judul']; ?></td>
                   <td colspan="" rowspan="" headers=""><?php echo $key['sk_tgl_pengajuan'] ?></td>
-                  <td colspan="" rowspan="" headers=""><center><a href=<?php echo '"'.base_url('file/pengajuan/'.$key['sk_file_pendukung']).'"';?>><img width="50" height="50" src="<?php echo base_url ('assets/img/pdf.png') ?>" alt=""></center></a></td>
-                  <td colspan="" rowspan="" headers=""><center><a href=<?php echo '"'.base_url('file/pengajuan/'.$key['sk_file_pendukung_2']).'"';?>><img width="50" height="50" src="<?php echo base_url ('assets/img/pdf.png') ?>"</center></a></td>
-                  <td colspan="" rowspan="" headers=""><center><a  target="_blank" href=<?php echo '"'.base_url('file/pengajuan/'.$key['sk_file_pendukung_3']).'"';?>><img width="50" height="50" src="<?php echo base_url ('assets/img/pdf.png') ?>" alt=""></center></a></td>
+                   <?php if($key['sk_file_pendukung']==NULL){ ?>
+                    <td colspan="" rowspan="" headers="">Data Kosong</td>
+                  <?php }else{?>
+                   <td colspan="" rowspan="" headers=""><center><a href=<?php echo '"'.base_url('file/pengajuan/'.$key['sk_file_pendukung']).'"';?>><img width="50" height="50" src="<?php echo base_url ('assets/img/pdf.png') ?>" alt=""></a></center></td>
+                  <?php } ?>
+                  <?php if($key['sk_file_pendukung_2']==NULL){ ?>
+                    <td colspan="" rowspan="" headers="">Data Kosong</td>
+                  <?php }else{?>
+                   <td colspan="" rowspan="" headers=""><center><a href=<?php echo '"'.base_url('file/pengajuan/'.$key['sk_file_pendukung_2']).'"';?>><img width="50" height="50" src="<?php echo base_url ('assets/img/pdf.png') ?>" alt=""></a></center></td>
+                  <?php } ?>
+                   <?php if($key['sk_file_pendukung_3']==NULL){ ?>
+                    <td colspan="" rowspan="" headers="">Data Kosong</td>
+                  <?php }else{?>
+                   <td colspan="" rowspan="" headers=""><center><a href=<?php echo '"'.base_url('file/pengajuan/'.$key['sk_file_pendukung_3']).'"';?>><img width="50" height="50" src="<?php echo base_url ('assets/img/pdf.png') ?>" alt=""></a></center></td>
+                  <?php } ?>
                   <td>
                     <center>
                       <?php if ($key['sk_proses_status']=='T'){?>
@@ -87,7 +99,7 @@
                 </tr>
                 <!-- MODAL EDIT -->
                 <div class="modal inmodal" id="<?php echo $key['sk_id_syarat']?>" tabindex="-1" role="dialog" aria-hidden="true">
-                  <div class="modal-dialog">
+                  <div class="modal-dialog modal-lg">
                     <div class="modal-content animated flipInY">
                       <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>

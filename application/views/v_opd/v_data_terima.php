@@ -48,7 +48,7 @@
                   <td colspan="" rowspan="" headers=""><?php echo $key['opd'] ?></td>
                   <td colspan="" rowspan="" headers=""><?php echo $key['judul']; ?></td>
                   <td colspan="" rowspan="" headers=""><?php echo $key['tanggal'] ?></td>
-                  <td colspan="" rowspan="" headers=""><center><a  target="_blank" href=<?php echo '"'.base_url('index.php/file/final/'.$key['file']).'"';?>><img width="50" height="50" src="<?php echo base_url ('assets/img/pdf.png') ?>" alt=""></a></center></td>
+                  <td colspan="" rowspan="" headers=""><center><a  target="_blank" href=<?php echo '"'.base_url('file/final/'.$key['file']).'"';?>><img width="50" height="50" src="<?php echo base_url ('assets/img/pdf.png') ?>" alt=""></a></center></td>
                   <td colspan="" rowspan="" headers=""><center><a href=<?php echo '"'.base_url('index.php/opd/dashboard/histori/'.$key['id']).'"';?> type="button" class="btn btn-success btn-md"><i class="glyphicon glyphicon-record" ></i></a></center></td>
                  <?php } ?>
 

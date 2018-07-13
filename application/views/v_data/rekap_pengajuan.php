@@ -31,8 +31,8 @@
 
 
       <div class="form-group">
-        <label class="control-label col-md-1 col-sm-3 col-xs-6" >Nama OPD</label>
-        <div class="col-md-2 col-sm-4 col-xs-6">
+        <label class="col-md-1" >Nama OPD</label>
+        <div class="col-md-4">
           <select class="select2_group form-control" name="opd">
 
             <?php foreach ($opd as $key) {?>

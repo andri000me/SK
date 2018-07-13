@@ -203,7 +203,7 @@ class Dashboard extends CI_Controller {
 			'active'		=> 'Data Pengajuan Diterima',
 			'konten'		=> 'v_opd/v_data_terima',
 			'no'			=> 0,
-			'temp'			=> $this->M_SK->get_terima(),
+			'temp'			=> $this->M_SK->get_terima_opd($data1),
 			'level'	        => $this->M_Login->cek_level($data1),
 		);
 

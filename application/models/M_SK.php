@@ -68,7 +68,13 @@ class M_SK extends CI_Model {
 	public function get_terima()
 	{
 		return $this->db->query("SELECT tb_briohukum.sk_id_syarat AS id, tb_briohukum.sk_tgl_proses AS tanggal, tb_briohukum.sk_final AS file, tb_sk_syarat.sk_judul AS judul, tb_sk_syarat.sk_nama_opd AS opd
-		 FROM tb_sk_syarat JOIN tb_briohukum ON tb_sk_syarat.sk_id_syarat=tb_briohukum.sk_id_syarat WHERE tb_sk_syarat.sk_proses_status='Y' GROUP BY tb_briohukum.sk_id_syarat DESC ")->result_array();
+		 FROM tb_sk_syarat JOIN tb_briohukum ON tb_sk_syarat.sk_id_syarat=tb_briohukum.sk_id_syarat WHERE tb_briohukum.sk_status='Y' GROUP BY tb_briohukum.sk_id_syarat DESC ")->result_array();
+		
+	}
+	public function get_terima_opd($id)
+	{
+		return $this->db->query("SELECT tb_briohukum.sk_id_syarat AS id, tb_briohukum.sk_tgl_proses AS tanggal, tb_briohukum.sk_final AS file, tb_sk_syarat.sk_judul AS judul, tb_sk_syarat.sk_nama_opd AS opd
+		 FROM tb_sk_syarat JOIN tb_briohukum ON tb_sk_syarat.sk_id_syarat=tb_briohukum.sk_id_syarat WHERE tb_briohukum.sk_status='Y' AND tb_sk_syarat.sk_nama_opd='$id' GROUP BY tb_briohukum.sk_id_syarat DESC ")->result_array();
 		
 	}
 	public function get_tolak()
